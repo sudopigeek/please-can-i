@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <script type="module" src="scripts/main.js"></script>
     <title>Please Can I...</title>
 </head>
 <body>
@@ -11,15 +13,16 @@
         <h1>Please Can I...</h1>
     </header>
     <main>
-        <form>
+        <form onsubmit="Submit()">
             <input class="pleaForm" type="text" name="Plea" id="childPlea">
             <select class="pleaForm" name="Repetitions" id="reps">
+                <option value="default">Select Repetition</option>
             </select>
-            <input class="pleaForm" type="submit" value="Submit Plea">
+            <input class="pleaForm" id="submitBtn" type="button" value="Submit Plea">
         </form>
         <section id="pleaOutput">
-            
+
         </section>
     </main>
-</body>
+</body> 
 </html>
