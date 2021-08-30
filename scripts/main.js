@@ -7,25 +7,14 @@ const populateReps = () => {
         container.appendChild(option)
     } 
 }
-
-document.getElementById("submitBtn").addEventListener('click', function(event) {
-    let childPlea = document.getElementById("childPlea")
-    let reps = document.getElementById("reps")
-    if (childPlea.value == "" || reps.value == "default") {
-        alert("Please specify a plea and its repetition.")
-    } else {
-        showPleas(childPlea.value, reps.value)
-    }
-    event.preventDefault()
-})
-
 const showPleas = (plea, reps) => {
     let outputContainer = document.getElementById("pleaOutput")
-    // Remove all child elements:
     while (outputContainer.firstChild) {
         outputContainer.removeChild(outputContainer.firstChild);
     }
-    // Create pleas:
+    if (document.getElementById("useRandom").checked) {
+        reps = Math.floor(Math.random() * 101)
+    }
     for (let i = 0; i < reps; i++) {
         let p = document.createElement('p')
         if (Math.floor(Math.random() * 2) === 0) {
@@ -36,5 +25,42 @@ const showPleas = (plea, reps) => {
         outputContainer.appendChild(p)
     }
 }
-
+document.getElementById("submitBtn").addEventListener('click', function(event) {
+    let childPlea = document.getElementById("childPlea")
+    let reps = document.getElementById("reps")
+    if (childPlea.value == "") {
+        alert("Please specify a plea and its repetition.")
+    } else {
+        if (reps.value == "default" && document.getElementById("useRandom").checked == false) {
+            alert("Please specify a repetition.")
+        } else {
+            showPleas(childPlea.value, reps.value)
+        }    
+    }
+    event.preventDefault()
+})
+document.querySelectorAll(".random").forEach(function(element) {
+    element.addEventListener('click', function() {
+        let random = document.getElementById("useRandom")
+        let reps = document.getElementById("reps")
+        if (element.id === "randomLbl") {
+            if (random.checked) {
+                random.checked = false
+                reps.disabled = false
+            } else {
+                random.checked = true
+                reps.disabled = true
+            }
+        } else {
+            if (random.checked) {
+                random.checked = true
+                reps.disabled = false
+            } else {
+                random.checked = false
+                reps.disabled = true
+            }
+        }
+    })
+})
+ 
 populateReps()
