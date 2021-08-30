@@ -7,6 +7,13 @@ const populateReps = () => {
         container.appendChild(option)
     } 
 }
+const clearForm = () => {
+    document.querySelectorAll(".pleaForm, .random").forEach(function(element) {
+        element.value = ""
+    })
+    document.getElementById("reps").value = "default"
+    document.getElementById("submitBtn").value = "Submit Plea"
+}
 const randomColor = () => {
     var x = Math.floor(Math.random() * 256);
     var y = Math.floor(Math.random() * 256);
@@ -43,6 +50,7 @@ document.getElementById("submitBtn").addEventListener('click', function(event) {
             alert("Please specify a repetition.")
         } else {
             showPleas(childPlea.value, reps.value)
+            clearForm()
         }    
     }
 })
@@ -65,10 +73,12 @@ document.querySelectorAll(".random").forEach(function(element) {
             } else {
                 random.checked = true
                 reps.disabled = true
+                reps.value = "default"
             }
         } else {
             if (random.checked) {
                 reps.disabled = true
+                reps.value = "default"
             } else {
                 reps.disabled = false
             }
