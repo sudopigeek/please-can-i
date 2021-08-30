@@ -7,6 +7,12 @@ const populateReps = () => {
         container.appendChild(option)
     } 
 }
+const randomColor = () => {
+    var x = Math.floor(Math.random() * 256);
+    var y = Math.floor(Math.random() * 256);
+    var z = Math.floor(Math.random() * 256);
+    return "rgb(" + x + "," + y + "," + z + ")";
+}
 const showPleas = (plea, reps) => {
     let outputContainer = document.getElementById("pleaOutput")
     while (outputContainer.firstChild) {
@@ -22,12 +28,14 @@ const showPleas = (plea, reps) => {
         } else {
             p.innerHTML = plea
         }
+        p.style.color = randomColor()
         outputContainer.appendChild(p)
     }
 }
 document.getElementById("submitBtn").addEventListener('click', function(event) {
     let childPlea = document.getElementById("childPlea")
     let reps = document.getElementById("reps")
+    event.preventDefault()
     if (childPlea.value == "") {
         alert("Please specify a plea and its repetition.")
     } else {
@@ -37,7 +45,14 @@ document.getElementById("submitBtn").addEventListener('click', function(event) {
             showPleas(childPlea.value, reps.value)
         }    
     }
-    event.preventDefault()
+})
+document.querySelectorAll(".pleaForm, .random").forEach(function(element) {
+    element.addEventListener('keyup', function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault()
+            document.getElementById("submitBtn").click()
+        }
+    })
 })
 document.querySelectorAll(".random").forEach(function(element) {
     element.addEventListener('click', function() {
@@ -64,3 +79,4 @@ document.querySelectorAll(".random").forEach(function(element) {
 })
  
 populateReps()
+document.getElementById("childPlea").focus()
