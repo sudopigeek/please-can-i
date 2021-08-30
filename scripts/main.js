@@ -28,7 +28,7 @@ const showPleas = (plea, reps) => {
     // Create pleas:
     for (let i = 0; i < reps; i++) {
         let p = document.createElement('p')
-        if (i % 2 === 0) {
+        if (Math.floor(Math.random() * 2) === 0) {
             p.innerHTML = plea.toUpperCase()
         } else {
             p.innerHTML = plea
