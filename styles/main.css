@@ -10,7 +10,7 @@ form {
     flex-direction: column;
     border: 1px solid black;
     padding: 10px;
-    width: 20%;
+    width: 300px;
 }
 .pleaForm {
     margin: 0.5em;
