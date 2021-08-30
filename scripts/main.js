@@ -68,11 +68,9 @@ document.querySelectorAll(".random").forEach(function(element) {
             }
         } else {
             if (random.checked) {
-                random.checked = true
-                reps.disabled = false
-            } else {
-                random.checked = false
                 reps.disabled = true
+            } else {
+                reps.disabled = false
             }
         }
     })
